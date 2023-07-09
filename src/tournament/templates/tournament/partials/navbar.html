@@ -24,7 +24,7 @@
                 </ul>
                 <div class="nav navbar-nav navbar-right">
                     <li><a href="{% url 'tournament:documentation' page_name="getting_started" %}">Documentation</a></li>
-                    <li><a href="{% url 'tournament:bot_list' %}">Rankings</a></li>
+                    <li><a href="{% url 'tournament:bot_list' %}">Leaderboard</a></li>
                     <li><a href="{% url 'tournament:recent_matches' %}">Recent Matches</a></li>
                     <li><a href="{% url 'tournament:visualizer' %}">Visualizer</a></li>
                     {% if user.is_authenticated %}

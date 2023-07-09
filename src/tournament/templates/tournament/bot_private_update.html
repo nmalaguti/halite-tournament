@@ -1,10 +1,12 @@
 {% extends "tournament/base.html" %}
 
-{% block title %}Profile{% endblock %}
+{% block title %}Edit Profile{% endblock %}
 
 {% block content %}
     <div class="row">
-        {% crispy form %}
+        <div class="col-md-12">
+            {% crispy form %}
+        </div>
     </div>
 {% endblock %}
 

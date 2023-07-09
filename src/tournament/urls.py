@@ -27,7 +27,7 @@ urlpatterns = [
         name="visualizer_match",
     ),
     path(
-        "rankings/",
+        "leaderboard/",
         views.BotListView.as_view(),
         name="bot_list",
     ),

@@ -4,10 +4,12 @@
 
 {% block content %}
     <div class="row">
-        <div class="jumbotron">
-            <h1>Hello, world!</h1>
-            <p>This is a resurrected version of the Halite competition from 2016. Stay tuned for more details.</p>
-            <p><a class="btn btn-primary btn-lg" href="{% url 'tournament:documentation' page_name="getting_started" %}" role="button">Learn more</a></p>
+        <div class="col-md-12">
+            <div class="jumbotron">
+                <h1>Hello, world!</h1>
+                <p>This is a resurrected version of the Halite competition from 2016. Stay tuned for more details.</p>
+                <p><a class="btn btn-primary btn-lg" href="{% url 'tournament:documentation' page_name="getting_started" %}" role="button">Learn more</a></p>
+            </div>
         </div>
     </div>
 {% endblock %}

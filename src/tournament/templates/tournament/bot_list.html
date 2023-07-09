@@ -1,29 +1,36 @@
 {% extends "tournament/base.html" %}
 
-{% block title %}Rankings{% endblock %}
+{% block title %}Leaderboard{% endblock %}
 
 {% block content %}
     <div class="row">
-        {% if bot_list %}
-            <table class="table table-hover">
-                <tr>
-                    <th>Rank</th>
-                    <th>Bot</th>
-                    <th>Score</th>
-                    <th>Matches</th>
-                </tr>
-                {% for bot in bot_list %}
+        <div class="col-md-12 text-center">
+            <h2>Leaderboard</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {% if bot_list %}
+                <table class="table table-hover">
                     <tr>
-                        <td>{{ bot.rank}}</td>
-                        <td>{% bot_link bot=bot %}</td>
-                        <td title="mu: {{ bot.mu|floatformat:3 }}, sigma: {{ bot.sigma|floatformat:3 }}">{{ bot.score|floatformat:3 }}</td>
-                        <td>{{ bot.match_count }}</td>
+                        <th>Rank</th>
+                        <th>Bot</th>
+                        <th>Score</th>
+                        <th>Matches</th>
                     </tr>
-                {% endfor %}
-            </table>
-        {% else %}
-            <h2>No bots are available.</h2>
-        {% endif %}
+                    {% for bot in bot_list %}
+                        <tr>
+                            <td>{{ bot.rank}}</td>
+                            <td>{% bot_link bot=bot %}</td>
+                            <td title="mu: {{ bot.mu|floatformat:3 }}, sigma: {{ bot.sigma|floatformat:3 }}">{{ bot.score|floatformat:3 }}</td>
+                            <td>{{ bot.match_count }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <h2>No bots are available.</h2>
+            {% endif %}
+        </div>
     </div>
     {% include "tournament/partials/paginate.html" %}
 {% endblock %}
