@@ -1,0 +1,69 @@
+{% extends "tournament/base.html" %}
+
+{% block title %}{{ bot.name }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-3">
+            {% if bot.user.is_npc %}
+                {{ bot|bot_profile_pic }}
+            {% else %}
+                <a href="https://github.com/{{ bot }}"><img src="https://github.com/{{ bot }}.png" class="img-responsive center-block img-thumbnail" style="margin-bottom: 32px; border-radius: 5%" width="252px" height="252px"></a>
+            {% endif %}
+        </div>
+        <div class="col-md-9">
+            <h1>{{ bot }}{% if bot.user.is_npc %} <span class="label label-warning">NPC</span>{% endif %}</h1>
+            <table class="table" style="margin-top: 1em;">
+                <tr>
+                    <th style="width: 1%; white-space: nowrap">Rank</th>
+                    <td>{{ bot.rank }}</td>
+                </tr>
+                <tr>
+                    <th style="width: 1%; white-space: nowrap">Score</th>
+                    <td title="mu: {{ bot.mu|floatformat:3 }}, sigma: {{ bot.sigma|floatformat:3 }}">{{ bot.score|floatformat:3 }}</td>
+                </tr>
+                <tr>
+                    <th style="width: 1%; white-space: nowrap">Matches</th>
+                    <td>{{ bot.match_count }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            {% if matchresult_list %}
+                <table class="table">
+                    <tr>
+                        <th>Time</th>
+                        <th>Opponents</th>
+                        <th>Result</th>
+                        <th>Dimensions</th>
+                        <th>Score</th>
+                        <th>Replay</th>
+                    </tr>
+                    {% for match_result in matchresult_list %}
+                        <tr>
+                            <td>{{ match_result.match.date|localized_datetime }}</td>
+                            <td>
+                                {% for result in match_result.match.ordered_results %}
+                                    {% bot_link bot=result.bot self=bot %}{% if not forloop.last %},{% endif %}
+                                {% endfor %}
+                            </td>
+                            <td>{{ match_result.rank }} of {{ match_result.match.results.count }}</td>
+                            <td>{{ match_result.match.width }}x{{ match_result.match.height }}</td>
+                            <td title="mu: {{ match_result.mu|floatformat:3 }}, sigma: {{ match_result.sigma|floatformat:3 }}">{{ match_result.score|floatformat:3 }}</td>
+                            <td>
+                                <a href="{% url 'tournament:match_detail' uuid=match_result.match.uuid %}">
+                                    <span class="glyphicon glyphicon-film"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <h2>No match results are available.</h2>
+            {% endif %}
+        </div>
+    </div>
+    {% include "tournament/partials/paginate.html" %}
+{% endblock %}

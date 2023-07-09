@@ -1,0 +1,13 @@
+{% spaceless %}
+<a href="{% url "tournament:bot_detail" name=bot %}">
+    {% if bot.user.is_npc %}
+        <img src="{{ bot|bot_icon_url }}" style="border-radius: 5%; background-color: #f8fafb; background-clip: content-box;" width="30px" height="30px">
+    {% else %}
+        <img src="https://github.com/{{ bot }}.png" style="border-radius: 5%" width="30px" height="30px">
+    {% endif %}
+{% endspaceless %}
+{% spaceless %}
+    {% if bot == self %}<u>{% endif %}<span>{{ bot }}</span>{% if bot == self %}</u>{% endif %}
+    {% endspaceless %}{% if bot.user.is_npc %} <span class="label label-default">NPC</span>{% endif %}{% spaceless %}
+</a>
+{% endspaceless %}

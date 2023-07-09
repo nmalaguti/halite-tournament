@@ -1,0 +1,107 @@
+<style>
+    /* sidebar */
+    .bs-docs-sidebar {
+        padding-left: 20px;
+        margin-bottom: 20px;
+    }
+
+    .bs-docs-sidebar .nav>li>span {
+        color: #63ceca;
+    }
+
+    .bs-docs-sidebar .nav>li>span,
+    .bs-docs-sidebar .nav>li>a { border-left: 2px solid transparent;
+        padding: 4px 20px;
+        font-size: 20px;
+        font-weight: 400;
+    }
+
+    /* nested links */
+    .bs-docs-sidebar .nav .nav>li>a {
+        padding-top: 1px;
+        padding-bottom: 1px;
+        padding-left: 30px;
+        font-size: 14px;
+    }
+
+    /* active & hover links */
+    .bs-docs-sidebar .nav>.active>a,
+    .bs-docs-sidebar .nav>li>a:hover,
+    .bs-docs-sidebar .nav>li>a:focus {
+        text-decoration: none;
+        background-color: transparent;
+    }
+
+    /* nested active links */
+    .bs-docs-sidebar .nav .nav>.active>a,
+    .bs-docs-sidebar .nav .nav>.active:hover>a,
+    .bs-docs-sidebar .nav .nav>.active:focus>a {
+        border-left-color: #63ceca;
+        font-weight: 700;
+    }
+
+</style>
+
+<nav class="col-sm-3 bs-docs-sidebar">
+    <ul id="sidebar" class="nav nav-stacked">
+        <li class="">
+            <span>Basics</span>
+            <ul class="nav nav-stacked">
+                <li data-page-name="getting_started">
+                    <a href="{% url 'tournament:documentation' page_name="getting_started" %}">Getting Started</a>
+                </li>
+                <li data-page-name="basics_intro">
+                    <a href="{% url 'tournament:documentation' page_name="basics_intro" %}">Introducing Halite</a>
+                </li>
+                <li data-page-name="improve_random">
+                    <a href="{% url 'tournament:documentation' page_name="improve_random" %}">Improving the Random Bot</a>
+                </li>
+                <li data-page-name="next_steps">
+                    <a href="{% url 'tournament:documentation' page_name="next_steps" %}">Bot Next Steps</a>
+                </li>
+                <li data-page-name="faqs">
+                    <a href="{% url 'tournament:documentation' page_name="faqs" %}">FAQs</a>
+                </li>
+            </ul>
+        </li>
+        <li class="">
+            <span>Strategy</span>
+            <ul class="nav nav-stacked">
+                <li data-page-name="early_mid_late_game">
+                    <a href="{% url 'tournament:documentation' page_name="early_mid_late_game" %}">Early, Mid, and Late Game Strategy</a>
+                </li>
+            </ul>
+        </li>
+        <li class="">
+            <span>Rules</span>
+            <ul class="nav nav-stacked">
+                <li data-page-name="game_rules">
+                    <a href="{% url 'tournament:documentation' page_name="game_rules" %}">Game Rules</a>
+                </li>
+            </ul>
+        </li>
+        <li class="">
+            <span>Advanced</span>
+            <ul class="nav nav-stacked">
+                <li data-page-name="best_practices">
+                    <a href="{% url 'tournament:documentation' page_name="best_practices" %}">Best Practices</a>
+                </li>
+                <li data-page-name="submitting_a_bot">
+                    <a href="{% url 'tournament:documentation' page_name="submitting_a_bot" %}">Submitting A Bot</a>
+                </li>
+                <li data-page-name="starter_package">
+                    <a href="{% url 'tournament:documentation' page_name="starter_package" %}">Writing Your Own Starter Package</a>
+                </li>
+                <li data-page-name="halite_cli">
+                    <a href="{% url 'tournament:documentation' page_name="halite_cli" %}">Halite Environment CLI</a>
+                </li>
+                <li data-page-name="replay_files">
+                    <a href="{% url 'tournament:documentation' page_name="replay_files" %}">Replay Files</a>
+                </li>
+                <li data-page-name="game_servers">
+                    <a href="{% url 'tournament:documentation' page_name="game_servers" %}">Game Servers</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>

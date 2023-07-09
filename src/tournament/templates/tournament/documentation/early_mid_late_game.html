@@ -1,0 +1,81 @@
+{% extends "tournament/documentation/documentation.html" %}
+
+{% block title %}Documentation - Best Practices{% endblock %}
+
+{% block docs %}
+
+    <h1>Early, Mid, and Late Game Strategy</h1>
+
+    <p>I think of matches as happening in 3 phases:</p>
+
+    <ul>
+        <li>early game</li>
+        <li>mid game</li>
+        <li>late game</li>
+    </ul>
+
+    <p>The goals of each phase are different and it's important to think about all 3 in order to have a strong bot.</p>
+
+    <h2>Early Game</h2>
+
+    <p>I consider the early game to be from the start of the game until your bot makes contact with another player. <a href="//web.archive.org/web/20161222070159/http://forums.halite.io/t/introducing-unofficial-halite-single-player-mode/573">Single Player Mode</a> is basically early game all the time.</p>
+
+    <p>The goal of the early game is to capture neutral territory. You capture neutral territory for 2 main reasons:</p>
+
+    <ul>
+        <li>fuel your growth with production</li>
+        <li>deprive other players of valuable neutral territory</li>
+    </ul>
+
+    <p>In the early game, you don't need to defend your territory from other players so quick expansion into the most valuable (and preferably uncontested) areas is vital. However, you do want to keep an eye towards the rest of the game and try to avoid capturing low value territory that will be hard to defend.</p>
+
+    <h3>Efficiency</h3>
+
+    <p>It isn't always a good idea to take as much territory as possible. Some maps have low strength and high production (or a particular part of the map like that) - it's almost always a good idea to take that territory. Some maps have high strength and low production - it's important to pick and choose what territory to take.</p>
+
+    <p>How do you measure efficiency? Strength / Production and Production / Territory.</p>
+
+    <p>You want to have as much strength and as little territory as possible compared to your production. Even if you have less production than your enemies, if you can deplete their strength faster than they can produce more, you'll win.</p>
+
+    <h2>Mid Game</h2>
+
+    <p>I consider the mid game to be from when you first make contact with another player until there is very little remaining valuable neutral territory. Many games end before exiting the mid game (there is lots of neutral territory remaining).</p>
+
+    <p>As you approach the mid game, it is important to set yourself up for success. Before making contact with another player, you should be prepared to defend valuable areas of your territory and capture valuable areas of territory from other players.</p>
+
+    <h3>Taking Territory in the Mid Game</h3>
+
+    <p>In the mid game, you have the option to either attack other players or attack neutral territory. When you attack neutral territory, you expend strength in order to take territory. When you attack other players, you expend strength to decrease enemy strength, take territory, and deprive enemies of territory.</p>
+
+    <p>Generally, it is more efficient to take territory from another player than it is to continue to take neutral territory.</p>
+
+    <p>So why not stop taking neutral territory altogether and just go into all-out attack mode?</p>
+
+    <p>If we don't want to take any more neutral territory, we may have limited "throughput" when it comes to moving our pieces into enemy territory. Due to the 255 strength cap, if you have a single "lane" into enemy territory, you can move at most 255 strength into enemy territory per turn. If you have more than 255 production, you're going to end up with lots of unused strength. If your enemy has more than 255 production, you will both be at a standstill.</p>
+
+    <p>If your enemy uses their excess strength to keep expanding their territory, they'll capture more and more of the map until their production advantage is too big for you to overcome.</p>
+
+    <p>So how can you defeat your opponent? You can either expand into neutral territory faster than them and enter the late game, or you can increase the throughput and begin the race towards 0 strength.</p>
+
+    <p>Usually you want to pursue a combination of these approaches. If you spend too much strength capturing less valuable neutral territory but increasing throughput, your lower production and spending might cause you to run out of strength first. If you spend too much strength capturing valuable neutral territory, you run the risk of your opponent stockpiling their strength, increasing the throughput, and overpowering you - taking that valuable territory cheaply.</p>
+
+    <p>This becomes even more complicated when multiple players are involved. Defending the right areas, capturing the right neutral territory, attacking the right areas, managing your throughput, and managing your strength are all critical.</p>
+
+    <h2>Late Game</h2>
+
+    <p>I consider the late game to last from when most valuable neutral territory has been captured until the end of the game. Not all games reach the late game.</p>
+
+    <p>At this point there is nothing left to do except take territory from other players. Realized production and combat performance are critical in the late game.</p>
+
+    <ul>
+        <li>You don't want to take too long moving strength or lose strength to the 255 strength cap</li>
+        <li>You don't want to move pieces too often and lose production on those turns</li>
+        <li>You want to take advantage of overkill</li>
+        <li>You want to attack your enemies' high production areas</li>
+    </ul>
+
+    <p>This can be the most chaotic part of the game and it can be difficult to see why some players pull ahead and others fall behind.</p>
+
+    <p>The right strength at the right place at the right time makes all the difference.</p>
+
+{% endblock %}

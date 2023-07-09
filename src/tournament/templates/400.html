@@ -1,0 +1,23 @@
+{% extends "tournament/base.html" %}
+
+{% block title %}Bad Request{% endblock %}
+
+{% block navbar %}{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="panel panel-default text-center">
+            <div class="panel-body">
+                <h1>Oops!</h1>
+                <h2 class="text-danger">400 Bad Request</h2>
+                <p>Whatever you did it wasn't quite right. Try again I guess?</p>
+                <div>
+                    <a href="{% url 'tournament:index' %}" class="btn btn-primary" style="margin-top: 1em"><span
+                            class="glyphicon glyphicon-home"></span>Take Me Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

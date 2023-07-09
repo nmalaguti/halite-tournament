@@ -1,0 +1,15 @@
+{% extends "tournament/documentation/documentation.html" %}
+
+{% block title %}Documentation - Game Servers{% endblock %}
+
+{% block docs %}
+
+    <h1>Game Servers</h1>
+    <p>Matches are run using <a
+            href="https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources">Github
+        actions x64_64 runners</a>.</p>
+    <p>Each bot gets access to up to 1 GB of ram and 1/3 of a single CPU core. Be
+        careful when coding your bot that you can complete all your necessary logic within the timeout with limited CPU time.</p>
+    <p>Your bot will not have network access when running. If you need access to additional files, be sure to include them in your
+        docker image.</p>
+{% endblock %}

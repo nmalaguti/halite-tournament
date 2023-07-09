@@ -1,0 +1,12 @@
+.git/
+.idea/
+.venv/
+staticfiles/
+tests/
+
+fly.toml
+poetry.toml
+.env
+.envrc
+.gitignore
+*.sqlite3

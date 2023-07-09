@@ -1,0 +1,18 @@
+{% extends "tournament/base.html" %}
+
+{% block content %}
+    <div class="row">
+        {% include "tournament/documentation/documentation_sidebar.html" %}
+        <div class="col-sm-9">
+            {% block docs %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(function () {
+            $("li[data-page-name='{{ page_name }}']").addClass('active');
+        });
+    </script>
+{% endblock %}

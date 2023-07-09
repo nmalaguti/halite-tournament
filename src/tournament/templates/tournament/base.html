@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="{% static 'tournament/favicon.ico' %}"/>
+    <title>{% block title %}{% endblock %}</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="{% static "tournament/style/bootstrap.min.css" %}" rel="stylesheet"/>
+    <link href="{% static "tournament/style/general.css" %}" rel="stylesheet"/>
+
+    {% block styles %}{% endblock %}
+</head>
+<body>
+<div class="container">
+    {% block navbar %}
+        {% include "tournament/partials/navbar.html" %}
+    {% endblock %}
+    {% block messages %}
+        {% include "tournament/partials/messages.html" %}
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
+    {% block footer %}
+        <div class="row">
+            <div style="bottom: 0; left: 0; right: 0; height: 50px;" class="text-center">
+                <hr/>
+                <small><a href="https://github.com/HaliteChallenge/Halite/">Based on the assets and code of the original Halite Challenge</a></small>
+            </div>
+        </div>
+    {% endblock %}
+</div>
+<script src='https://js.sentry-cdn.com/58fb964e22e140a7b5350d8c09203d23.min.js' crossorigin="anonymous" data-lazy="no"></script>
+<script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js"></script>
+<script>
+    const DateTime = luxon.DateTime
+    $(() => {
+        $("span[data-date-time]").each((i, elem) => {
+            const datetime = DateTime.fromISO($(elem).data("date-time"))
+            const date = datetime.toLocaleString({
+                ...DateTime.DATE_SHORT,
+                month: '2-digit',
+                day: '2-digit',
+            })
+            const time = datetime.toLocaleString({
+                ...DateTime.TIME_WITH_SHORT_OFFSET,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+            })
+            $(elem).text(`${date} ${time}`)
+        })
+    })
+</script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

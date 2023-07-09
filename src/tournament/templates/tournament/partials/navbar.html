@@ -1,0 +1,49 @@
+
+<div class="row">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'tournament:index' %}" style="padding: 10px">
+                    {# TODO: switch to brand image #}
+{#                    Halite#}
+                    <img src="{% static "tournament/assets/full_logo.png" %}" style="height: 100%;">
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                </ul>
+                <div class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'tournament:documentation' page_name="getting_started" %}">Documentation</a></li>
+                    <li><a href="{% url 'tournament:bot_list' %}">Rankings</a></li>
+                    <li><a href="{% url 'tournament:recent_matches' %}">Recent Matches</a></li>
+                    <li><a href="{% url 'tournament:visualizer' %}">Visualizer</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'tournament:profile' %}">My Bot</a></li>
+                    {% endif %}
+                    {% if user.is_staff %}
+                        <li><a href="{% url 'admin:index' %}">Admin</a></li>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                        <a class="btn btn-default navbar-btn" href="{% url 'tournament:logout' %}">
+                            Logout
+                        </a>
+                    {% else %}
+                        <a id="github-button" class="btn btn-default navbar-btn" href="{% url 'tournament:login' %}">
+                            <i class="fa fa-github"></i> Sign in with GitHub
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
