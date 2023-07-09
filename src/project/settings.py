@@ -169,6 +169,7 @@ class Dev(Secrets):
     DEBUG = True
 
     ALLOWED_HOSTS = ["*"]
+    INTERNAL_IPS = ["127.0.0.1"]
 
     MEDIA_URL = "media/"
     MEDIA_ROOT = BASE_DIR / "mediafiles"
