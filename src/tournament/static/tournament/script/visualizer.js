@@ -186,7 +186,7 @@ function showGame(game, $container, options= {}) {
             mapGraphics.clear();
             graphGraphics.clear();
             renderer.render(stage);
-            window.onresize();
+            handleResize();
         }
         else if(e.keyCode == 90) { //z
             frame = 0;
