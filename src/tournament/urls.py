@@ -18,13 +18,8 @@ urlpatterns = [
     ),
     path(
         "visualizer/",
-        views.visualizer,
+        TemplateView.as_view(template_name="tournament/visualizer.html"),
         name="visualizer",
-    ),
-    path(
-        "visualizer/<uuid:match_id>/",
-        views.visualizer,
-        name="visualizer_match",
     ),
     path(
         "leaderboard/",
