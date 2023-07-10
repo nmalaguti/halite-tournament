@@ -32,7 +32,7 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <div id="visualizer" class="replay text-center">
+            <div id="visualizer" class="text-center">
                 <h2>Drag and drop a replay file to watch.</h2>
             </div>
         </div>
@@ -42,15 +42,15 @@
 {% block scripts %}
     {% include "tournament/partials/visualizer_scripts.html" %}
     <script src="https://unpkg.com/drag-drop@2.12.1/dragdrop.min.js"></script>
-    <script src="https://unpkg.com/pako@2.1.0/dist/pako_inflate.min.js"></script>
     <script>
         DragDrop('body', async function (files) {
             const file = files[0];
+            const data = await file.arrayBuffer()
             let text
             try {
-                text = pako.inflate(await file.arrayBuffer(), {to: 'string'});
+                text = pako.inflate(data, {to: 'string'});
             } catch (err) {
-                text = await file.text()
+                text = new TextDecoder().decode(data);
             }
             const $visualizer = $("#visualizer")
             $visualizer.html("<h1><span class=\"glyphicon glyphicon-refresh glyphicon-refresh-animate\"></span> Preparing replay...</h1>");

@@ -1,11 +1,13 @@
 {% if messages %}
     <div class="row">
-        {% for message in messages %}
-            <div class="alert {{ message.level_tag | bootstrap_alert }} alert-dismissible {{ message.extra_tags }}" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-                {{ message }}
-            </div>
-        {% endfor %}
+        <div class="col-sm-12">
+            {% for message in messages %}
+                <div class="alert {{ message.level_tag | bootstrap_alert }} alert-dismissible {{ message.extra_tags }}" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
     </div>
 {% endif %}

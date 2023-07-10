@@ -28,10 +28,6 @@
             <td>runGame.sh</td>
             <td>Script to run a game on Linux/macOS</td>
         </tr>
-        <tr>
-            <td>runGame.bat</td>
-            <td>Script to run a game on Windows. Assumes halite.exe is in the same folder.</td>
-        </tr>
     </table>
 
     <p>The file you need to change is MyBot. Regardless of what you do with your code, MyBot will be considered your main file on our game
@@ -42,14 +38,14 @@
         You can download the game environment <a href="https://github.com/nmalaguti/halite-matches/releases">here</a>. Place the downloaded
         binary <code>halite</code> in your
         starter kit folder.</p>
-    <p>To simulate a game, simply issue the command ./runGame.sh (Linux and macOS) or runGame.bat (Windows). This command will run a game
+    <p>To simulate a game, simply issue the command ./runGame.sh (Linux and macOS). This command will run a game
         between my MyBot and RandomBot (both are just copies of each other at this point) on a grid of size 30x30.</p>
     <p>The output should look like this and the details of the game will be stored in a file with the "hlt" extension (<code>35538-124984302.hlt</code>
         in the example below).</p>
 
     <pre><code>$ ./runGame.sh
-python3 MyBot.py
-python3 RandomBot.py
+python MyBot.py
+python RandomBot.py
 Init Message sent to player 2.
 Init Message sent to player 1.
 Init Message received from player 1, MyPythonBot.

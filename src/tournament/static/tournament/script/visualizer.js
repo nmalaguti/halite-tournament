@@ -1,23 +1,18 @@
-var renderer;
-function initPixi() {
-    //Create the root of the scene: stage:
-    stage = new PIXI.Container();
-
-    // Initialize the pixi graphics class for the map:
-    mapGraphics = new PIXI.Graphics();
-
-    // Initialize the pixi graphics class for the graphs:
-    graphGraphics = new PIXI.Graphics();
-
-    renderer = PIXI.autoDetectRenderer(0, 0, { backgroundColor: 0x000000, antialias: true, transparent: true });
-}
-
 function showGame(game, $container, options= {}) {
     const {
         maxWidth, maxHeight, showmovement, isminimal, seconds
     } = options
 
-    if(renderer == null) initPixi();
+    //Create the root of the scene: stage:
+    const stage = new PIXI.Container();
+
+    // Initialize the pixi graphics class for the map:
+    const mapGraphics = new PIXI.Graphics();
+
+    // Initialize the pixi graphics class for the graphs:
+    const graphGraphics = new PIXI.Graphics();
+
+    const renderer = PIXI.autoDetectRenderer(0, 0, { backgroundColor: 0x000000, antialias: true, transparent: true });
 
     $container.empty();
 
@@ -61,12 +56,13 @@ function showGame(game, $container, options= {}) {
     }
     centerStartPositions();
 
-    window.onresize = function() {
+    const handleResize = () => {
+        const $containerCanvas = $container.children("canvas")
         var allowedWidth = (maxWidth == null ? $container.width() : maxWidth);
-        var allowedHeight = window.innerHeight - (25 + $("canvas").offset().top);
+        var allowedHeight = window.innerHeight - (25 + $containerCanvas.offset().top);
         if(maxHeight != null) {
             if(maxHeight > 0) {
-                allowedHeight = maxHeight - ($("canvas").offset().top - $container.offset().top);
+                allowedHeight = maxHeight - ($containerCanvas.offset().top - $container.offset().top);
             } else {
                 // A negative maxHeight signifies extra space to leave for
                 // other page elements following the visualizer
@@ -162,7 +158,9 @@ function showGame(game, $container, options= {}) {
         }
         stage.addChild(mapGraphics);
     }
-    window.onresize();
+
+    handleResize()
+    window.addEventListener("resize", handleResize)
 
     var manager = new PIXI.interaction.InteractionManager(renderer);
     var mousePressed = false;

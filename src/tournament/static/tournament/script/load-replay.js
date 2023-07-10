@@ -2,6 +2,7 @@ $(() => {
     const loadReplay = async ($elem) => {
         const replayUrl = $elem.data("replay-url")
         const isMinimal = !!$elem.data("replay-is-minimal")
+        const maxHeight = $elem.data("replay-max-height")
         if (replayUrl) {
             if (!isMinimal) {
                 $elem.html(`<h1><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Downloading replay...</h1>`);
@@ -15,10 +16,17 @@ $(() => {
                 if (!isMinimal) {
                     $elem.html(`<h1><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Preparing replay...</h1>`);
                 }
-                const text = await response.text()
+                let data = await response.arrayBuffer()
+                let text
+                try {
+                    text = pako.inflate(data, {to: 'string'});
+                } catch (err) {
+                    text = new TextDecoder().decode(data);
+                }
                 showGame(textToGame(text), $elem, {
                     showmovement: true,
                     isminimal: isMinimal,
+                    maxHeight: maxHeight,
                 })
             }
         }

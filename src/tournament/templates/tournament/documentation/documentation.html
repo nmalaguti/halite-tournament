@@ -1,5 +1,9 @@
 {% extends "tournament/base.html" %}
 
+{% block styles %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css" integrity="sha512-ade8vHOXH67Cm9z/U2vBpckPD1Enhdxl3N05ChXyFx5xikfqggrK4RrEele+VWY/iaZyfk7Bhk6CyZvlh7+5JQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+{% endblock %}
+
 {% block content %}
     <div class="row">
         {% include "tournament/documentation/documentation_sidebar.html" %}
@@ -15,4 +19,9 @@
             $("li[data-page-name='{{ page_name }}']").addClass('active');
         });
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js" integrity="sha512-rdhY3cbXURo13l/WU9VlaRyaIYeJ/KBakckXIvJNAQde8DgpOmE+eZf7ha4vdqVjTtwQt69bD2wH2LXob/LB7Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        hljs.highlightAll();
+    </script>
+    {% include "tournament/partials/visualizer_scripts.html" %}
 {% endblock %}
