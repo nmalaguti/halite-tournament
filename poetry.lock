@@ -526,6 +526,19 @@ files = [
 Django = ">=3.2"
 
 [[package]]
+name = "django-markdown-deux"
+version = "1.0.6"
+description = "a Django app that provides template tags for using Markdown (using the python-markdown2 processor)"
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-markdown-deux-1.0.6.zip", hash = "sha256:1f7b4da6b4dd1a9a84e3da90887d356f8afdd9a1e7d6468c081b8ac50a7980b1"},
+]
+
+[package.dependencies]
+markdown2 = "*"
+
+[[package]]
 name = "django-storages"
 version = "1.13.2"
 description = "Support for many storage backends in Django"
@@ -720,6 +733,22 @@ files = [
 [package.dependencies]
 cryptography = ">=3.4"
 deprecated = "*"
+
+[[package]]
+name = "markdown2"
+version = "2.4.9"
+description = "A fast and complete Python implementation of Markdown"
+optional = false
+python-versions = ">=3.5, <4"
+files = [
+    {file = "markdown2-2.4.9-py2.py3-none-any.whl", hash = "sha256:58e1789543f47cdd4197760b04771671411f07699f958ad40a4b56c55ba3e668"},
+    {file = "markdown2-2.4.9.tar.gz", hash = "sha256:7a1742dade7ec29b90f5c1d5a820eb977eee597e314c428e6b0aa7929417cd1b"},
+]
+
+[package.extras]
+all = ["pygments (>=2.7.3)", "wavedrom"]
+code-syntax-highlighting = ["pygments (>=2.7.3)"]
+wavedrom = ["wavedrom"]
 
 [[package]]
 name = "mashumaro"
@@ -1706,4 +1735,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "5573fba14d6f49b8253fe8923de50d799eb62b214019311474fb84ff80866498"
+content-hash = "87680dc1e8168f7c56ce6ee9159b2d798fbc121a99b2e248d1336cdee608dab4"

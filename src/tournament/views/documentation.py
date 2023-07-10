@@ -11,4 +11,11 @@ def documentation(request, page_name: str):
             context={"page_name": page_name},
         )
     except TemplateDoesNotExist:
-        raise Http404("Page does not exist.")
+        try:
+            return render(
+                request,
+                f"tournament/documentation/{page_name}.md",
+                context={"page_name": page_name},
+            )
+        except TemplateDoesNotExist:
+            raise Http404("Page does not exist.")

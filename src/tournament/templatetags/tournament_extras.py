@@ -30,6 +30,22 @@ def localized_datetime(date_time: datetime):
     )
 
 
+@register.simple_tag
+def minimal_replay(replay_file: str, height=500):
+    replay_file_url = static(os.path.join("tournament/replays", replay_file))
+    return mark_safe(
+        f"""<div class="thumbnail center-block replay" data-replay-url="{replay_file_url}" data-replay-is-minimal="true" data-replay-max-height="{height}"></div>"""
+    )
+
+
+@register.simple_tag
+def replay(replay_file: str, height=500):
+    replay_file_url = static(os.path.join("tournament/replays", replay_file))
+    return mark_safe(
+        f"""<div class="thumbnail center-block replay" data-replay-url="{replay_file_url}" data-replay-max-height="{height}"></div>"""
+    )
+
+
 BOT_ICONS = {
     "easybot": {
         "path": "bot.png",

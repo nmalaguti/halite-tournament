@@ -14,3 +14,10 @@
 .replay canvas {
     margin-bottom: -4px;
 }
+
+code {
+    color: #c7254e;
+    background-color: #f2f9f2;
+    border-radius: 4px;
+    font-size: 85%;
+}

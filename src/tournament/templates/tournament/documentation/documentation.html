@@ -2,6 +2,21 @@
 
 {% block styles %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/monokai-sublime.min.css" integrity="sha512-ade8vHOXH67Cm9z/U2vBpckPD1Enhdxl3N05ChXyFx5xikfqggrK4RrEele+VWY/iaZyfk7Bhk6CyZvlh7+5JQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        h1, h2, h3, h4, h5, h6 {
+            padding-left: 0.25em;
+            margin-left: -0.25em;
+        }
+
+        .anchorjs-link {
+            color: #fff;
+        }
+
+        .anchorjs-link:hover {
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -14,6 +29,11 @@
 {% endblock %}
 
 {% block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/anchor-js/anchor.min.js"></script>
+    <script>
+        anchors.options.placement = "left"
+        anchors.add();
+    </script>
     <script>
         $(function () {
             $("li[data-page-name='{{ page_name }}']").addClass('active');

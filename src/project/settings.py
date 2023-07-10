@@ -35,6 +35,7 @@ class Base(Configuration):
         "rest_framework",
         "rest_framework.authtoken",
         "django_extensions",
+        "markdown_deux",
         "tournament",
     ]
 
@@ -62,6 +63,7 @@ class Base(Configuration):
                     "django.templatetags.static",
                     "crispy_forms.templatetags.crispy_forms_tags",
                     "tournament.templatetags.tournament_extras",
+                    "markdown_deux.templatetags.markdown_deux_tags",
                 ],
                 "context_processors": [
                     "django.template.context_processors.debug",
@@ -141,6 +143,18 @@ class Base(Configuration):
     CRISPY_TEMPLATE_PACK = "bootstrap3"
 
     LOGIN_URL = "/login/"
+
+    MARKDOWN_DEUX_STYLES = {
+        "default": {
+            "extras": {
+                "code-friendly": None,
+                "header-ids": None,
+                "fenced-code-blocks": None,
+                "highlightjs-lang": None,
+            },
+            "safe_mode": False,
+        }
+    }
 
 
 class CollectStatic(Base):
