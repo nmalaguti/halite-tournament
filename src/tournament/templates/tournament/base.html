@@ -44,26 +44,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js"></script>
-<script>
-    const DateTime = luxon.DateTime
-    $(() => {
-        $("span[data-date-time]").each((i, elem) => {
-            const datetime = DateTime.fromISO($(elem).data("date-time"))
-            const date = datetime.toLocaleString({
-                ...DateTime.DATE_SHORT,
-                month: '2-digit',
-                day: '2-digit',
-            })
-            const time = datetime.toLocaleString({
-                ...DateTime.TIME_WITH_SHORT_OFFSET,
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-            })
-            $(elem).text(`${date} ${time}`)
-        })
-    })
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js"></script>
+<script src="{% static "tournament/script/localized-datetime.js" %}"></script>
 {% block scripts %}{% endblock %}
 </body>
 </html>

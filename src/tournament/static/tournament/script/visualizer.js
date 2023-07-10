@@ -25,9 +25,6 @@ function showGame(game, $container, options= {}) {
         var $row = $("<div class='row'></div>");
         $row.append($("<div class='col-md-1'></div>"));
         $row.append($("<div class='col-md-10'></div>").append($("<h3 style='margin-top: 0px;'>"+game.players.slice(1, game.num_players+1).map(function(p) {
-            var nameComponents = p.name.split(" ");
-            var name = nameComponents.slice(0, nameComponents.length-1).join(" ").trim();
-            console.log(name);
             return "<span style='color: #"+p.color.slice(2, p.color.length)+";'>"+DOMPurify.sanitize(p.name, {ALLOWED_TAGS: []})+"</span>"
         }).join(" vs ")+"</h3>")));
         $row.append($("<div class='col-md-1' style='text-align: left;'><button type='button' class='btn btn-sm btn-default pull-right' data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-info-sign'></span></button> <div id='myModal' class='modal fade' role='dialog'> <div class='modal-dialog'> <div class='modal-content'> <div class='modal-header'> <button type='button' class='close' data-dismiss='modal'>&times;</button> <h4 class='modal-title'>Using the Visualizer</h4> </div><div class='modal-body'> <p><ul><li>Space pauses and plays.</li><li>Left and Right arrows navigate through the game.</li><li>Up and Down arrows change the speed of playback, as do the digits keys 1-5.</li><li>Plus (+) and Minus (-) zoom in and out on the graphs.</li><li>Z and X jump to the beginning and end of the game.</li><li>P shows the production heatmap onscreen.</li><li>E toggles the display of extra information.</li><li>W, A, S, and D pan the view around the map. O recenters the origin.</li><li>Comma and Period (< and >) navigate through the game by a single frame.</li><li>One can also click on the graphs to navigate through the game.</li></ul></p></div></div></div></div></div>"));
@@ -50,7 +47,7 @@ function showGame(game, $container, options= {}) {
         // find the initial bounding box of all players
         for(var x=0; x < game.width; x++) {
             for(var y=0; y < game.height; y++) {
-                if(game.frames[0][y][x].owner != 0) {
+                if(game.frames[0][y][x].owner !== 0) {
                     if(x < minX) { minX = x; }
                     if(x > maxX) { maxX = x; }
                     if(y < minY) { minY = y; }
@@ -77,9 +74,6 @@ function showGame(game, $container, options= {}) {
             }
         }
 
-        console.log(window.innerHeight)
-        console.log(allowedHeight)
-        var definingDimension = Math.min(allowedWidth, allowedHeight);
         if(isminimal) {
             if(allowedWidth < allowedHeight) {
                 sw = allowedWidth, sh = allowedWidth;
@@ -167,7 +161,6 @@ function showGame(game, $container, options= {}) {
             stage.addChild(graphGraphics);
         }
         stage.addChild(mapGraphics);
-        console.log(renderer.width, renderer.height);
     }
     window.onresize();
 
@@ -484,7 +477,7 @@ function showGame(game, $container, options= {}) {
                     str = game.frames[frame][y][x].strength;
                     prod = game.productions[y][x];
                     infoText.text = 'Str: ' + str.toString() + ' | Prod: ' + prod.toString();
-                    if(frame < game.moves.length && game.frames[frame][y][x].owner != 0) {
+                    if(frame < game.moves.length && game.frames[frame][y][x].owner !== 0) {
                         move = game.moves[frame][y][x];
                         if(move >= 0 && move < 5) {
                             move = "0NESW"[move];

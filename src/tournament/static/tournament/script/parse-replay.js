@@ -232,12 +232,10 @@ function processFrame(game, frameNum) {
 }
 
 function textToGame(text) {
-    var startParse = new Date();
-    console.log("Starting parse at", startParse);
     var game = JSON.parse(text)
 
-    if (game.version != 11) {
-        alert("Invalid version number: " + json_game.version);
+    if (game.version !== 11) {
+        alert("Invalid version number: " + game.version);
     }
 
     //Adds determinism (when used with https://github.com/davidbau/seedrandom) to color scramble.
@@ -267,11 +265,8 @@ function textToGame(text) {
     game.players.push({name: 'NULL', color: "0x888888"});
     for(i = 0; i < game.num_players; i++) {
         game.players.push({name: game.player_names[i], color: colors[i] });
-        console.log(game.players[game.players.length - 1].color);
     }
     delete game.player_names;
-
-    console.log(game.players);
 
     var maxProd = 0;
     for(var a = 0; a < game.height; a++) {
@@ -379,8 +374,5 @@ function textToGame(text) {
         }
     }
 
-    var endParse = new Date();
-    console.log("Finished parse at", endParse);
-    console.log("Parse took", (endParse - startParse) / 1000);
     return game
 }
