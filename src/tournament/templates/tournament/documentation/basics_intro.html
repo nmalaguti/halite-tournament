@@ -43,7 +43,7 @@
     <p>The output should look like this and the details of the game will be stored in a file with the "hlt" extension (<code>35538-124984302.hlt</code>
         in the example below).</p>
 
-    <pre><code>$ ./runGame.sh
+    <pre><code class="language-plaintext">$ ./runGame.sh
 python MyBot.py
 python RandomBot.py
 Init Message sent to player 2.
@@ -60,14 +60,20 @@ Turn 300
 Map seed was 124984302
 Opening a file at 35538-124984302.hlt
 Player #1, MyPythonBot, came in rank #1!
-Player #2, RandomPythonBot, came in rank #2!
-    </code></pre>
+Player #2, RandomPythonBot, came in rank #2!</code></pre>
 
 
     <h3>Visualizing a game</h3>
     <p>The console output from the game environment gives just the outcome of the game. To replay the game, drag and drop the file to <a
             href="{% url "tournament:visualizer" %}">the visualizer</a>. Since the starter pack is very bad at playing Halite, your
         visualization will be quite dull.</p>
+
+    <div
+            class="thumbnail center-block replay"
+            data-replay-url="{% static "tournament/replays/582452-4192079766.hlt.gz" %}"
+            data-replay-is-minimal="true"
+            data-replay-max-height="500">
+    </div>
 
     <h3>Halite game rules</h3>
     <p>What do all of these pretty squares mean?</p>
