@@ -10,13 +10,14 @@
     <div class="row">
         <div class="panel panel-default text-center">
             <div class="panel-body">
-                <h1>Oops!</h1>
+                <img src="{% static "tournament/assets/500.png" %}" class="img-responsive center-block" style="max-width: 250px;">
                 <h2 class="text-danger">500 Server Error</h2>
                 <p>Hopefully this message has been automatically reported.</p>
-                <div>
+                <p>
                     <a href="{% url 'tournament:index' %}" class="btn btn-primary" style="margin-top: 1em"><span
                             class="glyphicon glyphicon-home"></span>Take Me Home</a>
-                </div>
+                </p>
+                <p><small><a href="https://www.flaticon.com/free-icons/error" title="error icons">Error icons created by Freepik - Flaticon</a></small></p>
             </div>
         </div>
     </div>
