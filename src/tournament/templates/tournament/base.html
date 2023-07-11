@@ -39,9 +39,17 @@
 </div>
 {% if not debug %}
 <script src='https://js.sentry-cdn.com/58fb964e22e140a7b5350d8c09203d23.min.js' crossorigin="anonymous" data-lazy="no"></script>
+<script>
+    Sentry.onLoad(() =>{
+        Sentry.setUser({
+            {% if request.user.is_authenticated %}username: "{{ request.user.username }}",{% endif %}
+            ip_address: "{% verbatim %}{{auto}}{% endverbatim %}",
+        })
+    })
+</script>
 {% endif %}
-<script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/luxon@3.3.0/build/global/luxon.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.2/lodash.min.js"></script>

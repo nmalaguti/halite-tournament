@@ -197,6 +197,8 @@ class Dev(Secrets):
 
 
 class DevProd(Dev):
+    DEBUG = False
+
     DATABASES = values.DatabaseURLValue(environ_prefix="DJANGO", ssl_require=True)
 
     STORAGES = {
