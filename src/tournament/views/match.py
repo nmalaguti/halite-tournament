@@ -9,6 +9,15 @@ class MatchDetailView(generic.DetailView):
     slug_field = "uuid"
     slug_url_kwarg = "uuid"
 
+    def get_queryset(self):
+        return (
+            super()
+            .get_queryset()
+            .exclude(date__isnull=True)
+            .exclude(replay__isnull=True)
+            .exclude(results__isnull=True)
+        )
+
 
 class MatchListView(generic.ListView):
     model = Match

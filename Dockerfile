@@ -23,4 +23,4 @@ EXPOSE 8000
 ENV DJANGO_SETTINGS_MODULE=project.settings
 ENV DJANGO_CONFIGURATION=Prod
 
-CMD ["gunicorn", "--bind", ":8000", "--workers", "2", "project.wsgi"]
+CMD ["gunicorn", "--bind", ":8000", "--workers", "1", "--threads", "3", "project.wsgi"]

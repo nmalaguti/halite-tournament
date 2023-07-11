@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 def monkey_patch():
     BaseDatabaseWrapper.ensure_connection = retry(
         retry=retry_if_exception_type(OperationalError),
-        stop=stop_after_attempt(4),
+        stop=stop_after_attempt(6),
         wait=wait_exponential(min=1, max=10),
         before_sleep=before_sleep_log(logger, logging.INFO),
         reraise=True,

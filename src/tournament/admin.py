@@ -1,14 +1,65 @@
 from django import forms
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import UsernameField
 from django.core.exceptions import ValidationError
+from django.utils.safestring import mark_safe
 
+from .exceptions import HaliteError
 from .models import Bot, Match, MatchResult, User
+from .runner import get_players_for_seed, start_match
 
 
 class BotAdmin(admin.ModelAdmin):
     list_display = ["__str__", "docker_image", "enabled"]
+
+    actions = ["run_match", "run_match_with_seed_player"]
+
+    @admin.action(description="Run match with selected bots")
+    def run_match(self, request, queryset):
+        try:
+            match = start_match(queryset)
+        except HaliteError as e:
+            self.message_user(
+                request, f"Failed to start match: {e}", level=messages.ERROR
+            )
+            return
+
+        self.message_user(
+            request,
+            mark_safe(
+                f"""Match started <a href="https://github.com/nmalaguti/halite-matches/actions/runs/{match.run_id}">{match.uuid}</a>"""
+            ),
+            level=messages.SUCCESS,
+        )
+
+    @admin.action(description="Run match with bot as seed player")
+    def run_match_with_seed_player(self, request, queryset):
+        if len(queryset) > 1:
+            self.message_user(
+                request, "Pick a single bot to be the seed player", level=messages.ERROR
+            )
+            return
+
+        bots = get_players_for_seed(queryset[0])
+        try:
+            match = start_match(bots)
+        except HaliteError as e:
+            self.message_user(
+                request, f"Failed to start match: {e}", level=messages.ERROR
+            )
+            return
+
+        self.message_user(
+            request,
+            mark_safe(
+                f"""Match started <a href="https://github.com/nmalaguti/halite-matches/actions/runs/{match.run_id}">{match.uuid}</a>"""
+            ),
+            level=messages.SUCCESS,
+        )
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 class UserCreationForm(forms.ModelForm):
@@ -121,7 +172,7 @@ class MatchAdmin(admin.ModelAdmin):
 
     @admin.display(description="Participants")
     def participants(self, obj):
-        return ", ".join([result.bot for result in obj.results.all()])
+        return ", ".join([result.bot.name for result in obj.results.all()])
 
     def get_form(self, request, obj=None, **kwargs):
         """
