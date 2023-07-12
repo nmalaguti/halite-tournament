@@ -264,7 +264,7 @@ class Match(models.Model):
                 if created:
                     bot.mu = rating.mu
                     bot.sigma = rating.sigma
-                    bot.save(update_fields=["mu", "sigma"])
+                    bot.save(update_fields=["mu", "sigma", "updated_at"])
 
         return match_obj
 
