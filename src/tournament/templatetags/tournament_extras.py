@@ -24,6 +24,15 @@ def bootstrap_alert(value):
 
 
 @register.filter
+def ordinal(n: int):
+    if 11 <= (n % 100) <= 13:
+        suffix = "th"
+    else:
+        suffix = ["th", "st", "nd", "rd", "th"][min(n % 10, 4)]
+    return str(n) + suffix
+
+
+@register.filter
 def localized_datetime(date_time: datetime):
     return mark_safe(
         f"""<span data-date-time="{date_time.isoformat()}">{date_time.strftime("%m/%d/%Y %I:%M:%S %p %Z")}</span>"""
@@ -92,6 +101,9 @@ def bot_profile_pic(bot: Bot):
 
 @register.filter
 def bot_icon_url(bot: Bot):
+    if not bot.user.is_npc:
+        return f"https://github.com/{bot.name}.png"
+
     bot_pic = BOT_ICONS.get(
         bot.name,
         {

@@ -5,38 +5,35 @@
 {% block content %}
     <div class="row">
         <div class="col-md-12">
-            <table class="table">
+            <table class="table" style="margin-bottom: 0">
                 <tr>
                     <th>Time</th>
-                    <th>Opponents</th>
                     <th>Dimensions</th>
                     <th>Seed</th>
-                    {% if user.is_staff %}<th>Debug</th>{% endif %}
+{#                    {% if user.is_staff %}<th>Debug</th>{% endif %}#}
                 </tr>
                 <tr>
                     <td>{{ match.date|localized_datetime }}</td>
-                    <td>{% for result in match.ordered_results %}
-                        <a href="{% url "tournament:bot_detail" name=result.bot %}">
-                            {% if result.bot.user.is_npc %}
-                                <img src="{{ result.bot|bot_icon_url }}" style="max-height: 2em; border-radius: 5%; background-color: #f8fafb; background-clip: content-box;">
-                            {% else %}
-                                <img src="https://github.com/{{ result.bot }}.png" style="max-height: 2em; border-radius: 5%">
-                            {% endif %}
-                            {% if bot == result.bot %}<u>{% endif %}{{ result.bot }}{% if bot.id == r.bot.id %}</u>{% endif %}{% if result.bot.user.is_npc %} <span class="label label-default">NPC</span>{% endif %}</a>{% if not forloop.last %},{% endif %}
-                        {% endfor %}
-                    </td>
                     <td>{{ match.width }}x{{ match.height }}</td>
                     <td>{{ match.seed }}</td>
-                    {% if user.is_staff %}<td><a href="https://github.com/nmalaguti/halite-matches/actions/runs/{{ match.run_id }}">{{ match.run_id }}</a></td>{% endif %}
+{#                    {% if user.is_staff %}<td><a href="https://github.com/nmalaguti/halite-matches/actions/runs/{{ match.run_id }}">{{ match.run_id }}</a></td>{% endif %}#}
                 </tr>
             </table>
+            <div class="panel">
+                <div class="panel-body panel-default" style="padding-top: 0">
+                    <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+                        {% for result in match.ordered_results %}
+                            <div>
+                                <div class="text-center"><span class="label" style="display: inline-block; width: 35px">{{ result.rank|ordinal }}</span></div>
+                                <div class="text-center"> {% bot_link bot=result.bot self=user.bot %}</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="text-center" data-replay-url="{{ match.replay.url }}"></div>
-        </div>
-    </div>
+    <div class="text-center" data-replay-url="{{ match.replay.url }}"></div>
 {% endblock %}
 
 {% block scripts %}

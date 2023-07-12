@@ -51,9 +51,12 @@
                     {% for match_result in matchresult_list %}
                         <tr>
                             <td>{{ match_result.match.date|localized_datetime }}</td>
-                            <td>
+                            <td style="display: flex; flex-wrap: wrap; flex: initial; row-gap: 8px;">
                                 {% for result in match_result.match.ordered_results %}
-                                    {% bot_link bot=result.bot self=bot %}{% if not forloop.last %},{% endif %}
+                                    <div>
+                                        <span class="label" style="display: inline-block; width: 35px">{{ result.rank|ordinal }}</span>
+                                        {% bot_link bot=result.bot self=user.bot %}
+                                    </div>
                                 {% endfor %}
                             </td>
                             <td>{{ match_result.rank }} of {{ match_result.match.results.count }}</td>

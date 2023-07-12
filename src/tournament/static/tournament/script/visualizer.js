@@ -1,6 +1,6 @@
 function showGame(game, $container, options= {}) {
     const {
-        maxWidth, maxHeight, showmovement, isminimal, seconds
+        maxWidth, maxHeight, showmovement, isminimal, seconds, replayUrl
     } = options
 
     //Create the root of the scene: stage:
@@ -17,12 +17,55 @@ function showGame(game, $container, options= {}) {
     $container.empty();
 
     if(!isminimal) {
-        var $row = $("<div class='row'></div>");
+        let $row = $("<div class='row'></div>");
+        let playerNames = game.players
+            .slice(1, game.num_players + 1)
+            .map((p) => {
+                let sanitizedName = DOMPurify.sanitize(p.name, {ALLOWED_TAGS: []})
+                let color = p.color.slice(2, p.color.length)
+                return `<span style="color: #${color};">${sanitizedName}</span>`
+            })
+            .join(" vs ")
+
+        let downloadButton = ""
+        if (replayUrl) {
+            downloadButton = `<a href="${replayUrl}" class="btn btn-default btn-sm pull-right" title="Download Replay"><span class='glyphicon glyphicon-download-alt'></span></a>`
+        }
+
         $row.append($("<div class='col-md-1'></div>"));
-        $row.append($("<div class='col-md-10'></div>").append($("<h3 style='margin-top: 0px;'>"+game.players.slice(1, game.num_players+1).map(function(p) {
-            return "<span style='color: #"+p.color.slice(2, p.color.length)+";'>"+DOMPurify.sanitize(p.name, {ALLOWED_TAGS: []})+"</span>"
-        }).join(" vs ")+"</h3>")));
-        $row.append($("<div class='col-md-1' style='text-align: left;'><button type='button' class='btn btn-sm btn-default pull-right' data-toggle='modal' data-target='#myModal'><span class='glyphicon glyphicon-info-sign'></span></button> <div id='myModal' class='modal fade' role='dialog'> <div class='modal-dialog'> <div class='modal-content'> <div class='modal-header'> <button type='button' class='close' data-dismiss='modal'>&times;</button> <h4 class='modal-title'>Using the Visualizer</h4> </div><div class='modal-body'> <p><ul><li>Space pauses and plays.</li><li>Left and Right arrows navigate through the game.</li><li>Up and Down arrows change the speed of playback, as do the digits keys 1-5.</li><li>Plus (+) and Minus (-) zoom in and out on the graphs.</li><li>Z and X jump to the beginning and end of the game.</li><li>P shows the production heatmap onscreen.</li><li>E toggles the display of extra information.</li><li>W, A, S, and D pan the view around the map. O recenters the origin.</li><li>Comma and Period (< and >) navigate through the game by a single frame.</li><li>One can also click on the graphs to navigate through the game.</li></ul></p></div></div></div></div></div>"));
+        $row.append($("<div class='col-md-10'></div>").append($(`<h3 style="margin-top: 0px;">${playerNames}</h3>`)));
+        $row.append($(`
+            <div class='col-md-1' style='text-align: left;'>
+                ${downloadButton}
+                <button type='button' class='btn btn-sm btn-default pull-right' data-toggle='modal' data-target='#myModal' title="Show Info">
+                    <span class='glyphicon glyphicon-info-sign'></span>
+                </button>
+                <div id='myModal' class='modal fade' role='dialog'>
+                    <div class='modal-dialog'>
+                        <div class='modal-content'>
+                            <div class='modal-header'>
+                                <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                                <h4 class='modal-title'>Using the Visualizer</h4>
+                            </div>
+                            <div class='modal-body'>
+                                <ul>
+                                    <li>Space pauses and plays.</li>
+                                    <li>Left and Right arrows navigate through the game.</li>
+                                    <li>Up and Down arrows change the speed of playback, as do the digits keys 1-5.</li>
+                                    <li>Plus (+) and Minus (-) zoom in and out on the graphs.</li>
+                                    <li>Z and X jump to the beginning and end of the game.</li>
+                                    <li>P shows the production heatmap onscreen.</li>
+                                    <li>E toggles the display of extra information.</li>
+                                    <li>W, A, S, and D pan the view around the map. O recenters the origin.</li>
+                                    <li>Comma and Period (< and >) navigate through the game by a single frame.</li>
+                                    <li>One can also click on the graphs to navigate through the game.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `));
         $container.append($row);
     }
     $container.append(renderer.view);

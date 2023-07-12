@@ -27,6 +27,7 @@ $(() => {
                     showmovement: true,
                     isminimal: isMinimal,
                     maxHeight: maxHeight,
+                    replayUrl: replayUrl,
                 })
             }
         }

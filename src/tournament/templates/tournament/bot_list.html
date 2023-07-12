@@ -21,7 +21,7 @@
                     {% for bot in bot_list %}
                         <tr>
                             <td>{{ bot.rank}}</td>
-                            <td>{% bot_link bot=bot %}</td>
+                            <td>{% bot_link bot=bot self=user.bot %}</td>
                             <td title="mu: {{ bot.mu|floatformat:3 }}, sigma: {{ bot.sigma|floatformat:3 }}">{{ bot.score|floatformat:3 }}</td>
                             <td>{{ bot.match_count }}</td>
                         </tr>
