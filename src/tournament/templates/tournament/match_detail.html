@@ -10,13 +10,13 @@
                     <th>Time</th>
                     <th>Dimensions</th>
                     <th>Seed</th>
-{#                    {% if user.is_staff %}<th>Debug</th>{% endif %}#}
+                    {% if user.is_staff %}<th>Debug</th>{% endif %}
                 </tr>
                 <tr>
                     <td>{{ match.date|localized_datetime }}</td>
                     <td>{{ match.width }}x{{ match.height }}</td>
                     <td>{{ match.seed }}</td>
-{#                    {% if user.is_staff %}<td><a href="https://github.com/nmalaguti/halite-matches/actions/runs/{{ match.run_id }}">{{ match.run_id }}</a></td>{% endif %}#}
+                    {% if user.is_staff %}<td><a href="https://github.com/nmalaguti/halite-matches/actions/runs/{{ match.run_id }}">{{ match.run_id }}</a></td>{% endif %}
                 </tr>
             </table>
             <div class="panel">
