@@ -23,12 +23,19 @@ $(() => {
                 } catch (err) {
                     text = new TextDecoder().decode(data);
                 }
-                showGame(textToGame(text), $elem, {
-                    showmovement: true,
-                    isminimal: isMinimal,
-                    maxHeight: maxHeight,
-                    replayUrl: replayUrl,
-                })
+                try {
+                    showGame(textToGame(text), $elem, {
+                        showmovement: true,
+                        isminimal: isMinimal,
+                        maxHeight: maxHeight,
+                        replayUrl: replayUrl,
+                    })
+                } catch (err) {
+                    if (!isMinimal) {
+                        $elem.html(`<h1>Replay <a href="${replayUrl}">${replayUrl}</a> failed to parse! ${err}</h1>`);
+                    }
+                }
+
             }
         }
     }

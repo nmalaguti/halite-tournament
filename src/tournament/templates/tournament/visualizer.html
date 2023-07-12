@@ -54,10 +54,14 @@
             }
             const $visualizer = $("#visualizer")
             $visualizer.html("<h1><span class=\"glyphicon glyphicon-refresh glyphicon-refresh-animate\"></span> Preparing replay...</h1>");
-            showGame(textToGame(text), $visualizer, {
-                showmovement: true,
-                isminimal: false,
-            });
+            try {
+                showGame(textToGame(text), $visualizer, {
+                    showmovement: true,
+                    isminimal: false,
+                });
+            } catch (err) {
+                $visualizer.html(`<h1>Replay failed to parse! ${err}</h1>`);
+            }
         });
     </script>
 {% endblock %}
