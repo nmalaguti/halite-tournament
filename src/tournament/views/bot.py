@@ -22,6 +22,7 @@ class BotListView(generic.ListView):
             super()
             .get_queryset()
             .filter(enabled=True)
+            .exclude(docker_image__exact="")
             .annotate(
                 rank=Window(
                     expression=Rank(), order_by=(F("mu") - (F("sigma") * 3)).desc()
